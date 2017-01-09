@@ -5,7 +5,7 @@
 
 1.  Assign each Key with a 6-byte ID, including 4-byte Measurement ID + 2-byte Series ID. With the 2-byte Series ID, we support 64K series in each measurement, which should be enough to accommodate the normal usage of tag sets and fields;
 2.  When a measurement is deleted, we do not reuse that Measurement ID. Therefore, any newly assigned Measurement ID does not conflict with previously assigned ones. This would simplify many operations and avoid meta data corruption. With 4 billion slots for Measurement IDs, this should not impact the normal usage;
-3.  The Key-ID mapping table is stored in the Meta node cluster to provide fault tolerance for this critical information. When a Data node restarts or joins, it makes a local copy of the mapping table. Updates to the Key-ID mapping table is handled by the Meta node cluster and synced to the Data nodes;
+3.  The Key-ID mapping table is stored in the Meta node cluster to provide fault tolerance for this critical information. When a Data node restarts or joins, it makes a local copy of the mapping table. Updates to the mapping table is handled by the Meta node cluster and synced to the Data nodes;
 
 **Benefits:** 
 
@@ -41,7 +41,7 @@
 
 **Benefits:**
 
-1. Improved locality means reduced contention and better performance. 
+1. Improved locality means reduced contention and better performance; 
 2. Good preparation for multi-tenant solution in the future. Collections can have different retention policies and security settings;
 	
 
